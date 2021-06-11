@@ -13,15 +13,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
-  var chatIconColor ;
-  var groupIconColor ;
-  var profileIconCOlor ;
+  // var chatIconColor;
+  // var groupIconColor;
+  // var profileIconCOlor;
 
-
-
-
-  final List<Widget> screens =
-  [
+  final List<Widget> screens = [
     RecentChats(),
     Contact(),
   ];
@@ -31,45 +27,44 @@ class _HomeScreenState extends State<HomeScreen> {
     Widget widget = Container(); // default
     switch (_currentIndex) {
       case 0:
-        var chatIconColor = Colors.blue;
-        var groupIconColor = Colors.grey.shade600;
-        var profileIconCOlor = Colors.grey.shade600;
-        widget=screens[0];
+        // chatIconColor = Colors.blue;
+        // groupIconColor = Colors.grey.shade600;
+        // profileIconCOlor = Colors.grey.shade600;
+        widget = screens[0];
         break;
-     case 1:
+      case 1:
+        widget = AlertDialog(
+          title: const Text('Coming Soon'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Group section will be available soon'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              },
+            ),
+          ],
+        );
+        // chatIconColor = Colors.grey.shade600;
+        // groupIconColor = Colors.blue;
+        // profileIconCOlor = Colors.grey.shade600;
 
-       widget= AlertDialog(
-         title: const Text('Coming Soon'),
-         content: SingleChildScrollView(
-             child: ListBody(
-               children: const <Widget>[
-                 Text('Group section will be available soon'),
-               ],
-             ),
-           ),
-         actions: <Widget>[
-           TextButton(
-             child: const Text('OK'),
-             onPressed: () {
-               Navigator.push(
-                 context,
-                 MaterialPageRoute(builder: (context) => HomeScreen()),
-               );
-             },
-           ),
-         ],
-       );
-       var chatIconColor = Colors.grey.shade600;
-       var groupIconColor = Colors.blue;
-       var profileIconCOlor = Colors.grey.shade600;
+        break;
 
-       break;
-
-       case 2:
-         var chatIconColor = Colors.grey.shade600;
-         var groupIconColor = Colors.grey.shade600;
-         var profileIconCOlor = Colors.blue;
-         break;
+      case 2:
+        // chatIconColor = Colors.grey.shade600;
+        // groupIconColor = Colors.grey.shade600;
+        // profileIconCOlor = Colors.blue;
+        break;
     }
     return Scaffold(
       backgroundColor: Colors.white,
@@ -84,10 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text(
           'Chats',
           style: TextStyle(
-            fontSize: 28.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.black
-          ),
+              fontSize: 28.0, fontWeight: FontWeight.bold, color: Colors.black),
         ),
         elevation: 0.0,
         actions: <Widget>[
@@ -99,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: <Widget>[
                   Container(
                     padding:
-                    EdgeInsets.only(left: 8, right: 8, top: 2, bottom: 2),
+                        EdgeInsets.only(left: 8, right: 8, top: 2, bottom: 2),
                     height: 30,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
@@ -107,23 +99,28 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     child: SizedBox(
                         width: 100,
-                        child:Align(
+                        child: Align(
                           alignment: Alignment.centerLeft,
-                          child:FloatingActionButton.extended(
+                          child: FloatingActionButton.extended(
                             backgroundColor: Colors.blue[50],
-                            icon: Icon(Icons.add,color: Colors.black,),
-                            label: Text("add new",style: TextStyle(color: Colors.black),),
-                            onPressed: ()
-                            {
+                            icon: Icon(
+                              Icons.add,
+                              color: Colors.black,
+                            ),
+                            label: Text(
+                              "add new",
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            onPressed: () {
                               //Move to Contact Widget
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => Contact()),
+                                MaterialPageRoute(
+                                    builder: (context) => Contact()),
                               );
                             },
                           ),
-                        )
-                    ),
+                        )),
                   ),
                 ],
               ),
@@ -162,14 +159,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             child: Column(
               children: <Widget>[
-               widget,
+                widget,
               ],
             ),
           ),
         )
       ]),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
+        currentIndex: _currentIndex,
         onTap: (int index) => setState(() => _currentIndex = index),
         unselectedItemColor: Colors.grey.shade600,
         selectedLabelStyle: TextStyle(fontWeight: FontWeight.w600),
@@ -177,20 +174,40 @@ class _HomeScreenState extends State<HomeScreen> {
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.message,color:chatIconColor ,),
-            title: Text("Chats",style: TextStyle(color: chatIconColor),),
-
-
-
-
+            icon: Icon(
+              Icons.message,
+              // color: chatIconColor,
+            ),
+            title: Text(
+              "Chats",
+              style: TextStyle(
+                  // color: chatIconColor
+                  ),
+            ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.group_work,color: groupIconColor,),
-            title: Text("Groups",style: TextStyle(color: groupIconColor),),
+            icon: Icon(
+              Icons.group_work,
+              // color: groupIconColor,
+            ),
+            title: Text(
+              "Groups",
+              style: TextStyle(
+                  // color: groupIconColor
+                  ),
+            ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat,color: profileIconCOlor,),
-            title: Text("Profile",style: TextStyle(color: profileIconCOlor),),
+            icon: Icon(
+              Icons.chat,
+              // color: profileIconCOlor,
+            ),
+            title: Text(
+              "Profile",
+              style: TextStyle(
+                  // color: profileIconCOlor
+                  ),
+            ),
           ),
         ],
       ),
